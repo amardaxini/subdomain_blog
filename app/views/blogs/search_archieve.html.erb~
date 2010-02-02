@@ -1,0 +1,24 @@
+<% title @blog.name,false%>
+<div id="pagination">
+  <%= will_paginate @articles %>
+</div>
+<div id="articles">
+  <% unless @blog.articles.blank? %>
+    <% for article in @articles %>
+      <h1>
+        <%= link_to h(article.name), article,:class=>'article_title' %> </h1>
+        <span class="comments">(<%= pluralize(article.comments.size, 'comment') %>)</span>
+
+      <div class="author">from <%=h article.author_name %> on <%= article.publish_at.strftime('%b %d, %Y') %></div>
+      <hr>
+      <div class="content"><%= article.content %></div>
+      
+    <% end %>
+  <% else %>
+    No Article Found
+  <% end %>
+</div>
+<%= will_paginate @articles %>
+<% content_for :sidebar do %>
+ <%= render :partial=>'blogs/sidebar',:locals=>{:blog=>@blog} %>
+<% end %>

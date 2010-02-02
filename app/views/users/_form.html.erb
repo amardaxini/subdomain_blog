@@ -1,0 +1,12 @@
+<%= error_messages_for :user %>
+<% form_for @user do|form| %>
+    <%= form.label :login %><br />
+      <%= form.text_field :login %><br /><br />
+      <%= form.text_field :name %><br /><br />
+      <%= form.label :password %><br />
+      <%= form.password_field :password %><br /><br />
+      <%= form.label :password_confirmation %><br />
+      <%= form.password_field :password_confirmation %><br />
+
+  <%= form.submit "Submit" %>
+    <% end %> 

@@ -1,0 +1,34 @@
+Search
+<% form_tag search_articles_path do |form|%>
+  <%= text_field_tag :search, params[:search],:size=>"30px" %>
+    <%= submit_tag "SEARCH", :name => nil %>
+   <hr> 
+<% end %>
+
+Recent Articles
+<ul>
+<%  blog.recent_articles.each do |article| %>
+<li><%= link_to article.name,article_path(article),:class=>'sidebar_anchor' %></li>
+<%  end %>
+</ul>
+<hr>
+Categories
+
+  <% unless blog.categories.blank? %>  
+  <ul>
+  <% blog.categories.each do |category|%>  
+    <li><%= link_to category.name ,search_category_articles_category_path(category),:class=>'sidebar_anchor' %>
+    (<%= category.articles.count%>)</li>
+  <% end %>
+  </ul>
+  <% else %>
+   <br />
+    No Category Found 
+   <% end %>
+<hr>
+Archieves
+ <ul>
+  <% blog.archieves.each do |archieve| %>
+    <li><%= link_to archieve.first,search_archieve_blog_path(blog,:archieve_date=>archieve.first),:class=>'sidebar_anchor' %></li>
+  <% end %>
+ </ul> 

@@ -1,0 +1,16 @@
+<% if !@categories.blank? %>
+ <% form_tag(save_categories_article_path(@article)) do%>
+<% @categories.each do |category| %>
+  
+    <%=h category.name %>
+    <%= check_box_tag  'category_ids[]' , category.id  ,@article.categories.include?(category) %>
+    <br />
+<% end %>
+<%= submit_tag "Submit" %>
+<% end %>
+<% else %>
+ Please Create Category
+ <%= link_to "Create Category"new_category_path() %>
+<% end %>
+
+</table>

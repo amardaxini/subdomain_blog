@@ -1,0 +1,23 @@
+<% title "Edit Article" %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", @article %> |
+  <%= link_to "View All", articles_path %>
+</p>
+
+<% content_for :sidebar do %>
+   <%= link_to "Back",dashboard_blog_path(@current_blog),:class=>'button back' %>
+   <div class="grid_3">
+
+   Categories
+  <ul>
+    <% @article.categories.each do |category| %>
+      <li><%= category.name %></li>
+    <% end %> 
+  </ul>
+  <%= link_to "Update Category", add_categories_article_path(@article),:class=>"button new" %>
+</div>
+ 
+<% end %>

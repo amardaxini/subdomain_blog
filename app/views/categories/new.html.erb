@@ -1,0 +1,7 @@
+<% title "New Category" %>
+
+<%= render :partial => 'form' %>
+<% content_for :sidebar do %>
+<%= link_to "Back",dashboard_blog_path(@current_blog),:class=>'button back' %>  
+<% end %>
+

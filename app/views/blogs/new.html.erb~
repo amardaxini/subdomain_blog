@@ -1,0 +1,8 @@
+<%= title "New Blog" %>
+
+<%= render :partial => 'form' %>
+
+<p><%= link_to "Back to List", blogs_path %></p>
+<% content_for :sidebar do %>
+  <%= link_to "Back",dashboard_blog_path(@current_blog) %>  
+<% end %>

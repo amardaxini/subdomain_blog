@@ -1,0 +1,21 @@
+<% title "Blogs" ,false %>
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th width="30"></th>
+    <tr>  
+  </thead>
+  <tbody>
+    <% for blog in @blogs %>
+      <tr>
+        <td><%= link_to blog.name, blog_root_url(:subdomain => blog.subdomain) %></td>
+        <td>  <%= link_to  image_tag('/images/edit_10.png', :border => "0"), edit_blog_path(blog) %>
+        <%= link_to image_tag('/images/delete_10.png', :border => "0"), blog, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>    
+
+<p><%= link_to "New Blog", new_blog_path %></p>

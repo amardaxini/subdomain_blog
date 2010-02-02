@@ -1,0 +1,17 @@
+<% title "Blogs" ,false %>
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+     <tr>  
+  </thead>
+  <tbody>
+    <% for blog in @blogs %>
+      <tr>
+        <td><%= link_to blog.name, blog_root_url(:subdomain => blog.subdomain) %></td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>    
+
+<p><%= link_to "New Blog", new_blog_path %></p>

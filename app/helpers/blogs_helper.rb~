@@ -1,0 +1,12 @@
+module BlogsHelper
+  def display_blog_name
+    @current_blog.blank? ? "RailsPress" : @current_blog.name
+  end
+ def display_recent_articles(blog,articles)
+   recent_articles = ""
+   articles.each do |article|
+    recent_articles +="#{link_to article.name ,article_path(article)}"
+    
+   end
+ end 
+end

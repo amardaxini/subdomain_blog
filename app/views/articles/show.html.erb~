@@ -1,0 +1,50 @@
+
+<% unless @article.blank? %>
+<% if !@article.previous_article.blank? %>
+     <div id="left_pagination" class="grid_5">
+        <== <%=link_to  @article.previous_article.name, @article.previous_article%> 
+      </div>
+   <% end %> 
+   <% if !@article.next_article.blank? %>
+     <div id="right_pagination" class="grid_5" style="float:right">
+       <%=link_to  @article.next_article.name, @article.next_article %> ==>
+      </div>
+   <% end %> 
+     
+   <%= clearing_span %>
+   <% title @article.name,false %>
+  <h1><%= link_to h(@article.name), @article,:class=>'article_title' %></h1>
+  
+   <div class="author">from <%=h @article.author_name %> on 
+                            <%= @article.publish_at.strftime('%b %d, %Y') %>
+   </div>
+   <hr>
+   <%= @article.content %>
+  <div id="category">
+    CATEGORY<br />
+    <%= @article.categories.collect{|c| c.name }.join(",") %>
+  </div>
+  <p><%= link_to "Back to Articles", articles_path %></p>
+  <% unless @article.comments.empty? %>
+    <h2><%= pluralize(@article.comments.size, 'comment') %></h2>
+    <div id="comments">
+      <% for comment in @article.comments %>
+        <div class="comment">
+          <strong><%= link_to_unless comment.site_url.blank?,
+                   h(comment.author_name), h(comment.site_url) %></strong>
+          <em>on <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %></em>
+          <%=simple_format comment.content %>
+      </div>
+    <% end %>
+   </div>
+ <% end %>
+
+  <h3>Add your comment:</h3>
+  <%= render :partial => 'comments/form' %>
+<% else %>
+  No Article Found
+<% end %>
+<% content_for :sidebar  do %>
+  <%= render :partial=>'blogs/sidebar',:locals=>{:blog=>@current_blog} %>
+<% end %>
+

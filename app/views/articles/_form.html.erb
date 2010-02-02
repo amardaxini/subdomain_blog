@@ -1,0 +1,21 @@
+<%= error_messages_for :article %>
+<% form_for @article do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name,:size=>"85%" %>
+  </p>
+  <p>
+  <%= f.label :content %><br />
+  <%= fckeditor_textarea(:article, :content, :toolbarSet => 'Simple', :width => '100%', :height => '400px') %>
+  </p>
+   <p>
+    
+    <% if @article.new_record? || !@article.is_publish?%>
+     <%= label_tag "Published" %>
+     <%= f.check_box :is_publish %>
+    <% else %>
+        Article is Published  
+     <% end %>  
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

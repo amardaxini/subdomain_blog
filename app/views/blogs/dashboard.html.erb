@@ -1,0 +1,29 @@
+<table class="listing">
+  <thead>
+    <th>Name</th>
+    <th>Publish</th>
+    <th width="30"></th>
+  </thead>
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td>
+        <% if article.is_publish %>
+        <%= link_to article.name,article_path(article),:class=>"sidebar_anchor"  %>
+        <% else %>
+          <%=  article.name %>
+        <% end %>
+      </td>
+      <td><%= article.publish %></td>
+      <td>
+        <%=link_to image_tag('/images/edit_10.png', :border => "0"),edit_article_path(article)%>
+        <%=link_to image_tag('/images/delete_10.png', :border => "0"),article_path(article),:confirm => "Are u sure u want to delete '#{article.name}' Article?",:method => :delete, :title => "Delete #{article.name}"%>
+      </td>
+    </tr>  
+  <% end %>
+  </tbody>
+</table>
+
+<% content_for :sidebar do %>
+  <%= render :partial=>'blogs/dashboard_sidebar' %>
+<% end %>

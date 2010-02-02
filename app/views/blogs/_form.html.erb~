@@ -1,0 +1,26 @@
+<%= error_messages_for :blog %>
+<% form_for @blog do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :subdomain %><br />
+    <%= f.text_field :subdomain %>
+  </p>
+   <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description ,:rows=>"10",:cols=>"70"%>
+  </p>
+  <% if @blog.new_record? %>
+  <% fields_for 'blog[user_attributes]', @user do|form| %>
+    <%= form.label :login %><br />
+      <%= form.text_field :login %><br /><br />
+      <%= form.text_field :name %><br /><br />
+      <%= form.label :password %><br />
+      <%= form.password_field :password %><br /><br />
+      <%= form.label :password_confirmation %><br />
+      <%= form.password_field :password_confirmation %><br />
+  <% end %> 
+  <p><%= f.submit "Submit" %></p>
+<% end %>

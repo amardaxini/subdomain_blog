@@ -1,0 +1,6 @@
+<% title "Edit Category" %>
+
+<%= render :partial => 'form' %>
+<% content_for :sidebar do %>
+ <== <%= link_to "Back",dashboard_blog_path(@current_blog) %>  
+<% end %>

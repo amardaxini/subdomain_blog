@@ -1,0 +1,6 @@
+<h1>Editing user</h1>
+
+<%= render :partial=>'form' %>
+<% content_for :sidebar do %>
+<%= link_to 'Back', user_path(@user),:class=>"edit button" %> 
+<% end %>

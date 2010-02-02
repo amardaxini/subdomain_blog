@@ -1,0 +1,12 @@
+<% if !current_user.blank? && @current_blog.users.include?(current_user) %>
+ <span style="float:right">
+    <%= link_to "Edit",edit_blog_path(@current_blog) %>
+ </span> 
+<% end %>
+<h1><%= @current_blog.name %></h1>
+<br />
+<%= @current_blog.description %>
+
+<% content_for :sidebar do %>
+  <%= render :partial=>'blogs/sidebar',:locals=>{:blog=>@blog} %>
+<% end %>
